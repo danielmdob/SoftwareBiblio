@@ -9,9 +9,15 @@ class User(models.Model):
         db_table = "user"
 
 
+class Anonymous(User):
+    class Meta:
+        db_table = 'anonymous'
+
+
 class Image(models.Model):
     image = models.ImageField(upload_to='../images/ProfilePictures', blank=True)
     url = models.CharField(max_length=255, unique=True)
+
     class Meta:
         db_table = "image"
 
@@ -34,7 +40,7 @@ class RegisteredUser(User):
     enabled = models.BooleanField
     address = models.CharField(max_length=100)
     phoneNumber = models.CharField(max_length=20)
-    profilePicture = models.OneToOneField(ProfilePicture, on_delete=models.SET_NULL)
+    profilePicture = models.OneToOneField(ProfilePicture, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'registeredUser'
@@ -73,7 +79,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     ISBN = models.CharField(max_length=20)
     ISSN = models.CharField(max_length=20)
-    series = models.ForeignKey(Serie, on_delete=models.SET_NULL)
+    series = models.ForeignKey(Serie, on_delete=models.SET_NULL, null=True)
     year = models.IntegerField
     signature = models.CharField(max_length=50)
     pages = models.IntegerField
@@ -81,7 +87,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=20)
     genres = models.ManyToManyField(Genre)
     authors = models.ManyToManyField(Author)
-    cover = models.OneToOneField(BookCover, on_delete=models.SET_NULL)
+    cover = models.OneToOneField(BookCover, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'book'
@@ -95,14 +101,15 @@ class Review(models.Model):
     class Meta:
         db_table = 'review'
 
+
 class Loan(models.Model):
     loanDate = models.DateTimeField
     returnDate = models.DateTimeField
     feeTime = models.DateTimeField
     fee = models.FloatField
-    admin = models.ForeignKey(Administrator, on_delete=models.SET_NULL)
+    admin = models.ForeignKey(Administrator, on_delete=models.SET_NULL, null=True, related_name='admin')
     feePerBook = models.FloatField
-    reader = models.ForeignKey(RegisteredUser, on_delete=models.SET_NULL)
+    reader = models.ForeignKey(RegisteredUser, on_delete=models.SET_NULL, null=True, related_name='reader')
 
     class Meta:
         db_table = 'loan'
@@ -111,9 +118,7 @@ class Loan(models.Model):
 class Copy(models.Model):
     copyNumber = models.IntegerField
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    loan = models.ForeignKey(Loan, on_delete=models.SET_NULL)
+    loan = models.ForeignKey(Loan, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'copy'
-
-
