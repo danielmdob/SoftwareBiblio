@@ -57,7 +57,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
-        <div class="content" style="height:470px;">
+        <div class="content" style="height:435px;" id="boxcontent">
             <!-- BEGIN REGISTRATION FORM -->
             <form class="register-form" method="post">
                 <h3>Termina de registrarte</h3>
@@ -66,26 +66,33 @@ License: You must have a valid license purchased only from themeforest(the above
                     <label class="control-label visible-ie8 visible-ie9">Nombre completo</label>
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
-                        <input class="form-control placeholder-no-fix" type="text" placeholder="Nombre Completo" name="fullname" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" placeholder="Nombre Completo" value="" name="fullname" id="fullname"/> </div>
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Cédula de identidad</label>
+                    <div class="input-icon">
+                        <i class="fa fa-font"></i>
+                        <input class="form-control placeholder-no-fix" type="text" placeholder="Cédula de identidad" name="cedula" id="cedula"/> </div>
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Correo Electrónico</label>
                     <div class="input-icon">
                         <i class="fa fa-envelope"></i>
-                        <input class="form-control placeholder-no-fix" type="text" value="{{ user.email }}" name="email" readonly/> </div>
+                        <input class="form-control placeholder-no-fix" type="text" value="{{ user.email }}" name="email" id="email" readonly/> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Dirección</label>
                     <div class="input-icon">
                         <i class="fa fa-check"></i>
-                        <input class="form-control placeholder-no-fix" type="text" placeholder="Dirección" name="address" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" placeholder="Dirección" name="address" id="address"/> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Provincia</label>
                     <div class="input-icon">
                         <i class="fa fa-location-arrow"></i>
-                        <input class="form-control placeholder-no-fix" type="text" placeholder="Provincia" name="city" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" placeholder="Provincia" name="city" id="city"/> </div>
                 </div>
                 <!--<div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Contraseña</label>
@@ -101,10 +108,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Contraseña de nuevo" name="rpassword" /> </div>
                     </div>
                 </div>-->
-                <div class="form-actions">
-                    <button type="submit" id="register-submit-btn" class="btn green pull-right"> Registrarme! </button>
-                </div>
             </form>
+            <div class="form-actions">
+                <button type="submit" id="register-submit-btn" class="btn green pull-right"> Registrarme! </button>
+            </div>
             <!-- END REGISTRATION FORM -->
         </div>
         <!-- END LOGIN -->
@@ -125,13 +132,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="../../static/js/Admin/registerValidate.js" type="text/javascript"></script>
         <script src="../../static/js/General/additional-methods.min.js" type="text/javascript"></script>
         <script src="../../static/js/General/select2.full.min.js" type="text/javascript"></script>
-        <script src="../../static/js/General/jquery.backstretch.min.js" type="text/javascript"></script>
+
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="../../static/js/General/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../../static/js/Admin/register.js" type="text/javascript"></script>
+        <script src="../../static/js/RegisteredUser/register.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->

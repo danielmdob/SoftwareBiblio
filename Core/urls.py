@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.contrib.auth import views
 from RegisteredUser.views import home
 from RegisteredUser.views import register
+from RegisteredUser.views import finish_register
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,6 +31,7 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
     url(r'^$', home, name='home'),
     url(r'^register', register, name='register'),
+    url(r'^ajax/finish_register/$', finish_register, name='finish_register')
 ]
 
 if settings.DEBUG:
