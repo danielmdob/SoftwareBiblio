@@ -7,9 +7,11 @@
 <body>
 {% block content %}
 	{% if user.is_authenticated %}
-             <p class="display-4">Hello, {{ user.username }}</p>
+             <meta http-equiv="refresh" content="0; url='register'" />
+             <!--<p class="display-4">Hello, {{ user.username }}</p>--> <!-- mandarlo a register-->
 	{% else %}
-             <a class="lead" href="{% url 'login' %}">Log in</a>
+             <meta http-equiv="refresh" content="0; url='login'" />
+             <!--<a class="lead" href="{% url 'logout' %}">Log in</a>-->
 	{% endif %}
 {% endblock content %}
 </body>

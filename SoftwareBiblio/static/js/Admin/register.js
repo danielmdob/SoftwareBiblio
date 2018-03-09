@@ -22,12 +22,6 @@ var Login = function () {
 	                city: {
 	                    required: true
 	                },
-	                password: {
-	                    required: true
-	                },
-	                rpassword: {
-	                    equalTo: "#register_password"
-	                },
 	            },
 
 	            invalidHandler: function (event, validator) { //display error alert on form submit   
@@ -62,7 +56,7 @@ var Login = function () {
 			$('.register-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.register-form').validate().form()) {
-	                    $('.register-form').submit();
+	                    submitData();
 	                }
 	                return false;
 	            }
@@ -89,6 +83,10 @@ var Login = function () {
     };
 
 }();
+
+function submitData(){
+	alert("REGISTRADO PAPU");
+}
 
 jQuery(document).ready(function() {
     Login.init();
