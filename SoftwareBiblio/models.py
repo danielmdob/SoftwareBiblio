@@ -32,14 +32,21 @@ class BookCover(Image):
         db_table = "bookCover"
 
 
-class RegisteredUser(User):
+class UnregisteredUser(User):
     email = models.CharField(max_length=20)
-    password = forms.CharField(widget=forms.PasswordInput)
-    firstName = models.CharField(max_length=20)
-    lastName = models.CharField(max_length=20)
-    enabled = models.BooleanField
+
+    class Meta:
+        db_table = 'unregisteredUser'
+
+
+class RegisteredUser(User):
+    email = models.CharField(max_length=50)
+    fullname = models.CharField(max_length=20)
+    cedula = models.CharField(max_length=20)
+    enabled = forms.BooleanField(initial=True)
     address = models.CharField(max_length=100)
-    phoneNumber = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20)
     profilePicture = models.OneToOneField(ProfilePicture, on_delete=models.SET_NULL, null=True)
 
     class Meta:

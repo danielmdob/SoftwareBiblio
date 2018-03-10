@@ -14,6 +14,9 @@ var Login = function () {
                     cedula: {
 	                    required: true
                     },
+                    phone: {
+	                    required: true
+                    },
 	                email: {
 	                    required: true,
 	                    email: true
@@ -38,17 +41,20 @@ var Login = function () {
 	            success: function (label) {
 	                label.closest('.form-group').removeClass('has-error');
 	                label.remove();
+	                document.getElementById('boxcontent').style.height = '590px';
 	            },
 
 	            errorPlacement: function (error, element) {
 	                if (element.attr("name") == "tnc") { // insert checkbox errors after the container
 	                    error.insertAfter($('#register_tnc_error'));
+	                    document.getElementById('boxcontent').style.height = '590px';
 	                } else if (element.closest('.input-icon').size() === 1) {
 	                    error.insertAfter(element.closest('.input-icon'));
+	                    document.getElementById('boxcontent').style.height = '590px';
 	                } else {
 	                	error.insertAfter(element);
+	                	document.getElementById('boxcontent').style.height = '590px';
 	                }
-	                document.getElementById('boxcontent').style.height = '530px';
 	            },
 
 	            submitHandler: function (form) {
@@ -82,21 +88,30 @@ function submitData(){
     var email = document.getElementById('email').value;
     var address = document.getElementById('address').value;
     var city = document.getElementById('city').value;
-    alert(fullname + cedula + email + address + city);
+    var phone = document.getElementById('phone').value;
+    var json_response;
     $.ajax({
-        url: '/ajax/finish_register/',
+        url: 'finish_register',
         data: {
           'fullname': fullname,
             'cedula': cedula,
             'email': email,
             'address': address,
-            'city': city
+            'city': city,
+            'phone': phone
         },
         dataType: 'json',
-        success: function () {
-          alert("REGISTRADO");
+        success: function (data) {
+            json_response = data;
+          alert("Redireccionando...")
         }
-      });
+      }).done(function () {
+            if(json_response.dashboard == 0) {
+                window.location.href = 'reader_dashboard';
+            } else {
+                window.location.href = 'admin_dashboard';
+            }
+    });
 }
 
 jQuery(document).ready(function() {
